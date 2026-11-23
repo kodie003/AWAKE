@@ -150,21 +150,27 @@
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 
+
+  .photos{background:var(--paper-2)}
+  .photos .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+  .photos .head p{max-width:520px;color:var(--ink-2)}
+  .masonry{columns:4 260px;column-gap:14px}
+  .masonry figure{break-inside:avoid;margin:0 0 14px;position:relative;border-radius:16px;overflow:hidden;cursor:zoom-in;background:#d8d5cd}
+  .masonry img{width:100%;height:auto;transition:transform .7s ease}
+  .masonry figure:hover img{transform:scale(1.04)}
+  .masonry figcaption{position:absolute;inset:auto 0 0 0;padding:28px 14px 12px;font:500 13px/1.35 Inter,sans-serif;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.62));opacity:0;transform:translateY(6px);transition:.35s}
+  .masonry figure:hover figcaption,.masonry figure:focus-visible figcaption{opacity:1;transform:none}
+  @media (hover:none){.masonry figcaption{opacity:1;transform:none}}
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(14,13,12,.94);display:none;align-items:center;justify-content:center;padding:24px}
+  .lb.open{display:flex}
+  .lb img{max-width:min(1100px,100%);max-height:82vh;width:auto;height:auto;border-radius:12px}
+  .lb p{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#eee;font:500 14px Inter,sans-serif;padding:0 60px}
+  .lb button{position:absolute;background:none;border:0;color:#fff;font:400 40px/1 Inter,sans-serif;cursor:pointer;padding:12px;opacity:.8}
+  .lb button:hover{opacity:1}
+  .lb .x{top:10px;right:16px}.lb .prev{left:8px;top:50%;transform:translateY(-50%)}.lb .next{right:8px;top:50%;transform:translateY(-50%)}
   /* ---- basketball + STEM touches ---- */
   .hero .fig{position:relative;max-width:460px;margin-left:auto}
   .hero .fig img{max-width:none}
-  .dribble{position:absolute;left:59%;top:44%;width:7%;height:41%}
-  .dribble .b{position:absolute;left:0;width:100%;aspect-ratio:1;top:0;transform-origin:50% 100%;animation:dribble 1s infinite}
-  .dribble .b svg{display:block;width:100%;height:100%}
-  .dribble::after{content:"";position:absolute;left:-30%;width:160%;height:10%;bottom:-4%;border-radius:50%;background:rgba(22,21,20,.45);filter:blur(2px);animation:shadow 1s infinite}
-  @keyframes dribble{
-    0%{top:0;transform:translateY(-50%);animation-timing-function:cubic-bezier(.55,0,1,.45)}
-    46%{top:100%;transform:translateY(-100%) scale(1,1)}
-    52%{top:100%;transform:translateY(-100%) scale(1.22,.78);animation-timing-function:cubic-bezier(0,.55,.45,1)}
-    58%{top:96%;transform:translateY(-100%) scale(.95,1.05)}
-    100%{top:0;transform:translateY(-50%)}
-  }
-  @keyframes shadow{0%,100%{transform:scale(.35);opacity:.25}50%{transform:scale(1);opacity:.6}}
   @media (max-width:860px){.hero .fig{max-width:300px;margin:0 auto}}
 
   .rotate{position:relative;overflow:hidden}
@@ -197,8 +203,7 @@
   @keyframes swish{30%{transform:scale(.85,1.25)}60%{transform:scale(1.05,.92)}100%{transform:none}}
 
   @media (prefers-reduced-motion:reduce){
-    .dribble .b,.dribble::after,.circuit .pulse,.circuit .led,.circuit .glow{animation:none}
-    .dribble .b{top:100%;transform:translateY(-100%)}
+    .circuit .pulse,.circuit .led,.circuit .glow{animation:none}
     .court *{stroke-dashoffset:0}
   }
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
@@ -214,6 +219,7 @@
     <ul>
       <li><a href="#why">Why</a></li>
       <li><a href="#camp">The camp</a></li>
+      <li><a href="#photos">Photos</a></li>
       <li><a href="#stage">Where we are</a></li>
       <li><a href="#partners">Partners</a></li>
       <li><a href="#join">Get involved</a></li>
@@ -236,7 +242,6 @@
         <source srcset="assets/cover.webp" type="image/webp">
         <img src="assets/cover.jpg" alt="Pen drawing of a dark figure in a defensive stance, with a white figure stepping out of it" width="579" height="800">
       </picture>
-      <div class="dribble" aria-hidden="true"><div class="b"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#e0622a" stroke="#161514" stroke-width="5"/><path d="M4 50h92M50 4v92M20 15c17 15 17 55 0 70M80 15c-17 15-17 55 0 70" fill="none" stroke="#161514" stroke-width="5"/></svg></div></div>
     </div></div>
   </div>
 </header>
@@ -300,6 +305,44 @@
     </div>
   </div>
 </section>
+
+<section class="photos" id="photos">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">On the ground</p>
+        <h2 style="margin-top:18px">Where it starts</h2>
+      </div>
+      <p>Photos from a YETS Ghana Basketball For Good camp, where our founder coaches. Basketball, chess and mentorship in one day: the model AWAKE is built on, now focused on girls.</p>
+    </div>
+    <div class="masonry">
+      <figure tabindex="0" data-full="assets/photos/9366.webp"><img src="assets/photos/9366-s.webp" alt="Her ball, her turn." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Her ball, her turn.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9594.webp"><img src="assets/photos/9594-s.webp" alt="Joy between drills." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Joy between drills.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9372.webp"><img src="assets/photos/9372-s.webp" alt="Dribbling drills, eyes up." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Dribbling drills, eyes up.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9364.webp"><img src="assets/photos/9364-s.webp" alt="Every girl gets a ball." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Every girl gets a ball.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9580.webp"><img src="assets/photos/9580-s.webp" alt="Ball overhead, ready to shoot." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Ball overhead, ready to shoot.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9615.webp"><img src="assets/photos/9615-s.webp" alt="Chess: thinking two moves ahead." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Chess: thinking two moves ahead.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9446.webp"><img src="assets/photos/9446-s.webp" alt="Reading out her answer." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Reading out her answer.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9382.webp"><img src="assets/photos/9382-s.webp" alt="Low dribble, all focus." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Low dribble, all focus.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9422.webp"><img src="assets/photos/9422-s.webp" alt="A hand up in the mentorship session." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>A hand up in the mentorship session.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9482.webp"><img src="assets/photos/9482-s.webp" alt="Friends made on the day." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Friends made on the day.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9358.webp"><img src="assets/photos/9358-s.webp" alt="Warm-up." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Warm-up.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9502.webp"><img src="assets/photos/9502-s.webp" alt="Coaches play chess too." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Coaches play chess too.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9655.webp"><img src="assets/photos/9655-s.webp" alt="Positive, cool, happy and strong." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Positive, cool, happy and strong.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9377.webp"><img src="assets/photos/9377-s.webp" alt="The dribbling line." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>The dribbling line.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9635.webp"><img src="assets/photos/9635-s.webp" alt="Hundreds of young people, one field." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Hundreds of young people, one field.</figcaption></figure>
+      <figure tabindex="0" data-full="assets/photos/9721.webp"><img src="assets/photos/9721-s.webp" alt="The volunteer coaching team." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>The volunteer coaching team.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="x" aria-label="Close">&times;</button>
+  <button class="prev" aria-label="Previous photo">&#8249;</button>
+  <img alt="">
+  <button class="next" aria-label="Next photo">&#8250;</button>
+  <p></p>
+</div>
 
 <section class="modules">
   <div class="wrap">
@@ -472,6 +515,22 @@
   }
   new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { setTimeout(shoot, 300); o.disconnect() } }, { threshold: .6 }).observe(shot)
   shot.addEventListener('click', shoot)
+
+  // photo viewer
+  const figs = [...document.querySelectorAll('.masonry figure')], lb = document.getElementById('lb')
+  const lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p')
+  let cur = 0, lastFocus = null
+  function show(i){ cur = (i + figs.length) % figs.length; const f = figs[cur]; lbImg.src = f.dataset.full; lbImg.alt = f.querySelector('img').alt; lbCap.textContent = f.querySelector('figcaption').textContent }
+  function open(i){ lastFocus = document.activeElement; show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus() }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; lastFocus && lastFocus.focus() }
+  figs.forEach((f, i) => { f.addEventListener('click', () => open(i)); f.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i) } }) })
+  lb.querySelector('.x').onclick = close
+  lb.querySelector('.prev').onclick = (e) => { e.stopPropagation(); show(cur - 1) }
+  lb.querySelector('.next').onclick = (e) => { e.stopPropagation(); show(cur + 1) }
+  lb.addEventListener('click', (e) => { if (e.target === lb) close() })
+  addEventListener('keydown', (e) => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1) })
+  let tx = 0; lb.addEventListener('touchstart', (e) => { tx = e.touches[0].clientX }, { passive: true })
+  lb.addEventListener('touchend', (e) => { const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) show(cur + (d < 0 ? 1 : -1)) })
 </script>
 </body>
 </html>
