@@ -13,220 +13,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#98958a;      /* the grey of the drawing paper */
-    --paper-2:#ecebe6;
-    --ink:#161514;
-    --ink-2:#3a3835;
-    --chalk:#fbfaf7;
-    --ball:#e0622a;       /* basketball orange, used sparingly */
-    --line:rgba(22,21,20,.14);
-    --wrap:1180px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{overflow-x:clip;background:var(--paper-2);color:var(--ink);font:400 17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  img{max-width:100%;display:block}
-  a{color:inherit}
-  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
-  .eyebrow{font:700 12px/1 Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ball)}
-  h1,h2,.display{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:.92;text-transform:uppercase}
-  h2{font-size:clamp(40px,6.5vw,84px)}
-  h3{font:600 24px/1.2 Fraunces,Georgia,serif}
-  .lede{font:400 clamp(20px,2.2vw,26px)/1.45 Fraunces,Georgia,serif}
-  section{padding:clamp(72px,10vw,140px) 0}
-
-  /* nav */
-  .nav{position:sticky;top:0;z-index:20;background:rgba(236,235,230,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 26px/1 Anton,sans-serif;letter-spacing:.04em}
-  .brand img{height:38px;width:auto}
-  .nav ul{display:flex;gap:26px;list-style:none;font:500 14px/1 Inter,sans-serif}
-  .nav ul a{text-decoration:none;opacity:.75}
-  .nav ul a:hover{opacity:1}
-  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--chalk);text-decoration:none;font:700 14px/1 Inter,sans-serif;letter-spacing:.04em;padding:16px 24px;border-radius:999px;transition:transform .2s}
-  .btn:hover{transform:translateY(-2px)}
-  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
-  @media (max-width:760px){.nav ul{display:none}}
-
-  /* hero */
-  .hero{background:var(--paper);padding:0;overflow:hidden}
-  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:24px;min-height:min(calc(100vh - 64px),860px);padding-top:40px;padding-bottom:40px}
-  .hero .wrap>*,.grid>*,.two>*{min-width:0}
-  .hero h1{font-size:clamp(84px,16vw,220px);color:var(--ink)}
-  .hero h1 span{color:var(--chalk)}
-  .hero .lede{max-width:520px;margin:24px 0 34px;color:var(--ink)}
-  .hero .art img{width:100%;max-width:460px;margin-left:auto;-webkit-mask-image:radial-gradient(ellipse 62% 66% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 62% 66% at 50% 50%,#000 55%,transparent 100%)}
-  .status{display:inline-flex;align-items:center;gap:10px;font:500 13px/1.3 Inter,sans-serif;background:rgba(251,250,247,.55);padding:9px 14px;border-radius:999px;margin-bottom:26px}
-  .dot{width:9px;height:9px;border-radius:50%;background:var(--ball);box-shadow:0 0 0 4px rgba(224,98,42,.25)}
-  .actions{display:flex;flex-wrap:wrap;gap:12px}
-  @media (max-width:860px){
-    .hero .wrap{grid-template-columns:1fr;min-height:auto;padding-top:48px}
-    .hero .art{order:-1}.hero .art img{max-width:300px;margin:0 auto}
-    .hero .copy{padding-bottom:56px}
-  }
-
-  /* why */
-  .why .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,96px)}
-  .why p+p{margin-top:18px}
-  .why .lede{color:var(--ink)}
-  .why .body{color:var(--ink-2)}
-  @media (max-width:860px){.why .grid{grid-template-columns:1fr}}
-
-  /* rotations */
-  .rotate{background:var(--ink);color:var(--chalk)}
-  .rotate .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:56px}
-  .rotate .head p{max-width:460px;color:rgba(251,250,247,.72)}
-  .stations{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(251,250,247,.18)}
-  .station{padding:32px 28px 8px 0;border-right:1px solid rgba(251,250,247,.18)}
-  .station+.station{padding-left:28px}
-  .station:last-child{border-right:0}
-  .station .num{font:400 64px/1 Anton,sans-serif;color:var(--ball)}
-  .station h3{margin:14px 0 12px;color:var(--chalk)}
-  .station p{color:rgba(251,250,247,.72);font-size:16px}
-  @media (max-width:860px){.stations{grid-template-columns:1fr}.station,.station+.station{padding:28px 0;border-right:0;border-bottom:1px solid rgba(251,250,247,.18)}}
-
-  /* modules */
-  .modules ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink);margin-top:48px}
-  .modules li{padding:22px 18px 26px 0;border-bottom:1px solid var(--line)}
-  .modules li span{font:400 14px/1 Anton,sans-serif;color:var(--ball);letter-spacing:.06em}
-  .modules li strong{display:block;font:600 21px/1.2 Fraunces,serif;margin:10px 0 6px}
-  .modules li p{font-size:15px;color:var(--ink-2)}
-  @media (max-width:960px){.modules ol{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:520px){.modules ol{grid-template-columns:1fr}}
-
-  /* stage */
-  .stage{background:var(--paper)}
-  .stage .honest{max-width:760px;margin:22px 0 56px}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-  .step{background:var(--chalk);border-radius:22px;padding:26px 22px;position:relative}
-  .step.now{background:var(--ink);color:var(--chalk)}
-  .step .when{font:700 11px/1 Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
-  .step.now .when{color:var(--ball);opacity:1}
-  .step h3{font-size:21px;margin:14px 0 10px}
-  .step p{font-size:15px;opacity:.8}
-  @media (max-width:960px){.steps{grid-template-columns:1fr 1fr}}
-  @media (max-width:520px){.steps{grid-template-columns:1fr}}
-
-  /* measure & safe */
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px)}
-  .card h2{font-size:clamp(34px,4.4vw,56px);margin:14px 0 22px}
-  .card ul{list-style:none}
-  .card li{padding:16px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
-  .card li b{color:var(--ink)}
-  @media (max-width:860px){.two{grid-template-columns:1fr}}
-
-  /* partners */
-  .partners .list{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
-  .partner{border:1.5px solid var(--ink);border-radius:22px;padding:24px 20px}
-  .partner strong{display:block;font:400 26px/1 Anton,sans-serif;text-transform:uppercase;letter-spacing:.02em}
-  .partner p{font-size:15px;color:var(--ink-2);margin-top:12px}
-  @media (max-width:960px){.partners .list{grid-template-columns:1fr 1fr}}
-  @media (max-width:520px){.partners .list{grid-template-columns:1fr}}
-
-  /* founder */
-  .founder{background:var(--ink);color:var(--chalk)}
-  .founder .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,96px);align-items:center}
-  .founder blockquote{font:400 clamp(26px,3.2vw,40px)/1.25 Fraunces,serif;font-style:italic}
-  .founder .who{margin-top:26px;color:rgba(251,250,247,.72)}
-  .founder .who a{color:var(--chalk)}
-  .founder .art img{max-width:340px;filter:invert(1) brightness(.95);opacity:.92}
-  @media (max-width:860px){.founder .grid{grid-template-columns:1fr}.founder .art img{max-width:220px}}
-
-  /* join */
-  .join{text-align:center}
-  .join h2{font-size:clamp(52px,10vw,150px)}
-  .join h2 span{color:var(--ball)}
-  .join p{max-width:620px;margin:26px auto 34px;color:var(--ink-2)}
-  .join .actions{justify-content:center}
-  .ways{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:64px;text-align:left}
-  .ways div{background:var(--chalk);border-radius:22px;padding:24px}
-  .ways strong{font:600 20px/1.2 Fraunces,serif}
-  .ways p{margin:8px 0 0;font-size:15px}
-  @media (max-width:760px){.ways{grid-template-columns:1fr}}
-
-  footer{border-top:1px solid var(--line);padding:30px 0;font-size:13px;color:var(--ink-2)}
-  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-
-
-  .photos{background:var(--paper-2)}
-  .photos .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
-  .photos .head p{max-width:520px;color:var(--ink-2)}
-  .masonry{columns:4 260px;column-gap:14px}
-  .masonry figure{break-inside:avoid;margin:0 0 14px;position:relative;border-radius:16px;overflow:hidden;cursor:zoom-in;background:#d8d5cd}
-  .masonry img{width:100%;height:auto;transition:transform .7s ease}
-  .masonry figure:hover img{transform:scale(1.04)}
-  .masonry figcaption{position:absolute;inset:auto 0 0 0;padding:28px 14px 12px;font:500 13px/1.35 Inter,sans-serif;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.62));opacity:0;transform:translateY(6px);transition:.35s}
-  .masonry figure:hover figcaption,.masonry figure:focus-visible figcaption{opacity:1;transform:none}
-  @media (hover:none){.masonry figcaption{opacity:1;transform:none}}
-  .lb{position:fixed;inset:0;z-index:50;background:rgba(14,13,12,.94);display:none;align-items:center;justify-content:center;padding:24px}
-  .lb.open{display:flex}
-  .lb img{max-width:min(1100px,100%);max-height:82vh;width:auto;height:auto;border-radius:12px}
-  .lb p{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#eee;font:500 14px Inter,sans-serif;padding:0 60px}
-  .lb button{position:absolute;background:none;border:0;color:#fff;font:400 40px/1 Inter,sans-serif;cursor:pointer;padding:12px;opacity:.8}
-  .lb button:hover{opacity:1}
-  .lb .x{top:10px;right:16px}.lb .prev{left:8px;top:50%;transform:translateY(-50%)}.lb .next{right:8px;top:50%;transform:translateY(-50%)}
-  /* ---- basketball + STEM touches ---- */
-  .hero .fig{position:relative;max-width:460px;margin-left:auto}
-  .hero .fig img{max-width:none}
-  @media (max-width:860px){.hero .fig{max-width:300px;margin:0 auto}}
-
-  .rotate{position:relative;overflow:hidden}
-  .rotate>.wrap{position:relative;z-index:1}
-  .court{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-  .court *{fill:none;stroke:rgba(251,250,247,.16);stroke-width:5;stroke-dasharray:1;stroke-dashoffset:var(--draw,1)}
-  .court .hoop{stroke:rgba(224,98,42,.6)}
-
-  .circuit{width:100%;max-width:760px;height:auto;margin:0 0 40px;display:block}
-  .circuit .trace{fill:none;stroke:var(--ink);stroke-width:3;stroke-linejoin:round;opacity:.55}
-  .circuit .pulse{fill:none;stroke:var(--ball);stroke-width:5;stroke-linecap:round;stroke-dasharray:.07 .93;stroke-dashoffset:1;animation:current 2.4s linear infinite}
-  .circuit .pulse.p2{animation-delay:-1.2s}
-  .circuit .node{fill:var(--paper-2);stroke:var(--ink);stroke-width:3}
-  .circuit .panel rect{fill:#2a2f3a;stroke:var(--ink);stroke-width:3}
-  .circuit .panel path{stroke:#8fa3c2;stroke-width:2;opacity:.7}
-  .circuit .led{fill:#9a8a6a;stroke:var(--ink);stroke-width:3;animation:led 2.4s linear infinite}
-  .circuit .glow{fill:#ffd27a;opacity:0;filter:blur(10px);animation:glow 2.4s linear infinite}
-  .circuit text{font:700 12px Inter,sans-serif;letter-spacing:.14em;fill:var(--ink);opacity:.6}
-  @keyframes current{to{stroke-dashoffset:0}}
-  @keyframes led{0%,70%{fill:#9a8a6a}80%,95%{fill:#ffd27a}100%{fill:#9a8a6a}}
-  @keyframes glow{0%,70%{opacity:0}80%,95%{opacity:.9}100%{opacity:0}}
-
-  .shot{width:100%;max-width:560px;height:auto;margin:0 auto 18px;display:block;cursor:pointer}
-  .shot .arc{fill:none;stroke:rgba(22,21,20,.35);stroke-width:3;stroke-dasharray:2 12;stroke-linecap:round}
-  .shot .rim{fill:none;stroke:var(--ball);stroke-width:6}
-  .shot .board{stroke:var(--ink);stroke-width:6}
-  .shot .net{fill:none;stroke:var(--ink);stroke-width:2;opacity:.6;transform-origin:520px 120px;transform-box:view-box}
-  .shot .net.swish{animation:swish .5s ease-out}
-  .shot .hint{font:700 11px Inter,sans-serif;letter-spacing:.16em;fill:var(--ink);opacity:.45}
-  @keyframes swish{30%{transform:scale(.85,1.25)}60%{transform:scale(1.05,.92)}100%{transform:none}}
-
-  @media (prefers-reduced-motion:reduce){
-    .circuit .pulse,.circuit .led,.circuit .glow{animation:none}
-    .court *{stroke-dashoffset:0}
-  }
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-
 <nav class="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="assets/icon.png" alt="" width="28" height="38">AWAKE</a>
+    <a class="brand" href="index.html"><img src="assets/icon.png" alt="" width="28" height="38">AWAKE</a>
     <ul>
-      <li><a href="#why">Why</a></li>
-      <li><a href="#camp">The camp</a></li>
-      <li><a href="#photos">Photos</a></li>
-      <li><a href="#stage">Where we are</a></li>
-      <li><a href="#partners">Partners</a></li>
-      <li><a href="#join">Get involved</a></li>
+      <li><a href="index.html" class="on">Home</a></li>
+      <li><a href="programme.html">The programme</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="index.html#join">Get involved</a></li>
     </ul>
   </div>
 </nav>
-
 <header class="hero" id="top">
   <div class="wrap">
     <div class="copy">
@@ -234,7 +35,7 @@
       <p class="lede">Basketball, hands-on STEM and mentorship for girls in Ghana. One court, one workbench, one circle of women who have been where they are.</p>
       <div class="actions">
         <a class="btn" href="#join">Get involved</a>
-        <a class="btn ghost" href="#camp">How a camp works</a>
+        <a class="btn ghost" href="programme.html">How a camp works</a>
       </div>
     </div>
     <div class="art"><div class="fig">
@@ -245,12 +46,12 @@
     </div></div>
   </div>
 </header>
-
 <section class="why" id="why">
   <div class="wrap grid">
     <div>
       <p class="eyebrow">Why AWAKE</p>
       <h2 style="margin-top:18px">Girls are welcome to watch.</h2>
+      <figure class="photo"><img src="assets/photos/9366-s.webp" alt="Her ball, her turn." width="448" height="560" loading="lazy" decoding="async"><figcaption>Her ball, her turn.</figcaption></figure>
     </div>
     <div>
       <p class="lede reveal">In most of the neighbourhoods we work in, the basketball court belongs to the boys. A few girls ask for the ball. Most never do, and after a while nobody expects them to.</p>
@@ -262,178 +63,17 @@
   </div>
 </section>
 
-<section class="rotate" id="camp">
-  <svg class="court" viewBox="0 0 2800 1500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <rect x="20" y="20" width="2760" height="1460" pathLength="1"/>
-    <path d="M1400 20V1480" pathLength="1"/>
-    <circle cx="1400" cy="750" r="180" pathLength="1"/>
-    <rect x="20" y="505" width="580" height="490" pathLength="1"/>
-    <circle cx="600" cy="750" r="180" pathLength="1"/>
-    <path d="M20 110H319A675 675 0 0 1 319 1390H20" pathLength="1"/>
-    <path d="M140 660V840" pathLength="1"/>
-    <circle class="hoop" cx="177" cy="750" r="23" pathLength="1"/>
-    <rect x="2200" y="505" width="580" height="490" pathLength="1"/>
-    <circle cx="2200" cy="750" r="180" pathLength="1"/>
-    <path d="M2780 110H2481A675 675 0 0 0 2481 1390H2780" pathLength="1"/>
-    <path d="M2660 660V840" pathLength="1"/>
-    <circle class="hoop" cx="2623" cy="750" r="23" pathLength="1"/>
-  </svg>
+<section class="highlights">
   <div class="wrap">
-    <div class="head">
-      <div>
-        <p class="eyebrow">How a camp works</p>
-        <h2 style="margin-top:18px">Groups of four.<br>Three stations.</h2>
-      </div>
-      <p>Girls split into small groups and rotate between stations, each led by a different coach or mentor. Nobody sits on the bench.</p>
+    <p class="eyebrow">Inside a camp day</p>
+    <h2 style="margin-top:18px">Court. Board. Circle.</h2>
+    <div class="cards">
+      <a class="card2 reveal" href="programme.html#camp"><figure class="photo"><img src="assets/photos/9372-s.webp" alt="Dribbling drills, eyes up." width="448" height="560" loading="lazy" decoding="async"><figcaption>Dribbling drills, eyes up.</figcaption></figure><h3>On the court</h3><p>Fundamentals, small-sided games, every girl touches the ball.</p></a>
+      <a class="card2 reveal" href="programme.html#camp"><figure class="photo"><img src="assets/photos/9615-s.webp" alt="Chess: thinking two moves ahead." width="448" height="560" loading="lazy" decoding="async"><figcaption>Chess: thinking two moves ahead.</figcaption></figure><h3>At the board</h3><p>Chess and hands-on builds that make girls slow down and plan.</p></a>
+      <a class="card2 reveal" href="programme.html#modules"><figure class="photo"><img src="assets/photos/9422-s.webp" alt="A hand up in the mentorship session." width="448" height="560" loading="lazy" decoding="async"><figcaption>A hand up in the mentorship session.</figcaption></figure><h3>In the circle</h3><p>Mentors, honest questions and an eight-module curriculum.</p></a>
     </div>
-    <div class="stations">
-      <div class="station reveal">
-        <div class="num">01</div>
-        <h3>The court</h3>
-        <p>Fundamentals first: BEEF shooting form (Balance, Eyes, Elbow, Follow-through), bounce passes and chest passes. Then small-sided games where every girl must touch the ball before anyone shoots.</p>
-      </div>
-      <div class="station reveal">
-        <div class="num">02</div>
-        <h3>The workbench</h3>
-        <p>Hands-on renewable-energy builds with kits from STEM FOR ALL Ghana: girls assemble solar lanterns and power banks, no computer needed. When something does not light up, they find the fault themselves.</p>
-      </div>
-      <div class="station reveal">
-        <div class="num">03</div>
-        <h3>The circle</h3>
-        <p>Mentorship from female athletes and young professionals, following our eight-module curriculum. Small groups, honest questions, and a follow-up check-in months after camp.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="photos" id="photos">
-  <div class="wrap">
-    <div class="head">
-      <div>
-        <p class="eyebrow">On the ground</p>
-        <h2 style="margin-top:18px">Where it starts</h2>
-      </div>
-      <p>Photos from a YETS Ghana Basketball For Good camp, where our founder coaches. Basketball, chess and mentorship in one day: the model AWAKE is built on, now focused on girls.</p>
-    </div>
-    <div class="masonry">
-      <figure tabindex="0" data-full="assets/photos/9366.webp"><img src="assets/photos/9366-s.webp" alt="Her ball, her turn." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Her ball, her turn.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9594.webp"><img src="assets/photos/9594-s.webp" alt="Joy between drills." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Joy between drills.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9372.webp"><img src="assets/photos/9372-s.webp" alt="Dribbling drills, eyes up." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Dribbling drills, eyes up.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9364.webp"><img src="assets/photos/9364-s.webp" alt="Every girl gets a ball." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Every girl gets a ball.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9580.webp"><img src="assets/photos/9580-s.webp" alt="Ball overhead, ready to shoot." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Ball overhead, ready to shoot.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9615.webp"><img src="assets/photos/9615-s.webp" alt="Chess: thinking two moves ahead." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Chess: thinking two moves ahead.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9446.webp"><img src="assets/photos/9446-s.webp" alt="Reading out her answer." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Reading out her answer.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9382.webp"><img src="assets/photos/9382-s.webp" alt="Low dribble, all focus." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Low dribble, all focus.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9422.webp"><img src="assets/photos/9422-s.webp" alt="A hand up in the mentorship session." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>A hand up in the mentorship session.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9482.webp"><img src="assets/photos/9482-s.webp" alt="Friends made on the day." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Friends made on the day.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9358.webp"><img src="assets/photos/9358-s.webp" alt="Warm-up." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Warm-up.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9502.webp"><img src="assets/photos/9502-s.webp" alt="Coaches play chess too." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Coaches play chess too.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9655.webp"><img src="assets/photos/9655-s.webp" alt="Positive, cool, happy and strong." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>Positive, cool, happy and strong.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9377.webp"><img src="assets/photos/9377-s.webp" alt="The dribbling line." width="2048" height="2560" loading="lazy" decoding="async"><figcaption>The dribbling line.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9635.webp"><img src="assets/photos/9635-s.webp" alt="Hundreds of young people, one field." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>Hundreds of young people, one field.</figcaption></figure>
-      <figure tabindex="0" data-full="assets/photos/9721.webp"><img src="assets/photos/9721-s.webp" alt="The volunteer coaching team." width="2048" height="1365" loading="lazy" decoding="async"><figcaption>The volunteer coaching team.</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <button class="x" aria-label="Close">&times;</button>
-  <button class="prev" aria-label="Previous photo">&#8249;</button>
-  <img alt="">
-  <button class="next" aria-label="Next photo">&#8250;</button>
-  <p></p>
-</div>
-
-<section class="modules">
-  <div class="wrap">
-    <svg class="circuit" viewBox="0 0 760 150" role="img" aria-label="A solar panel wired to an LED, with current flowing along the wires">
-      <g class="panel"><rect x="10" y="30" width="110" height="80" rx="4"/><path d="M47 30v80M83 30v80M10 57h110M10 83h110"/></g>
-      <text x="10" y="138">SUN</text>
-      <path class="trace" d="M120 55H250V25H430V55H560V60H660"/>
-      <path class="trace" d="M120 90H300V125H560V95H660"/>
-      <path class="pulse" pathLength="1" d="M120 55H250V25H430V55H560V60H660"/>
-      <path class="pulse p2" pathLength="1" d="M660 95H560V125H300V90H120"/>
-      <circle class="node" cx="250" cy="55" r="6"/><circle class="node" cx="430" cy="25" r="6"/><circle class="node" cx="300" cy="125" r="6"/><circle class="node" cx="560" cy="125" r="6"/>
-      <circle class="glow" cx="690" cy="77" r="40"/>
-      <path class="led" d="M670 92V70a20 20 0 0 1 40 0v22z"/>
-      <path class="trace" d="M680 92v26M700 92v34"/>
-      <text x="664" y="146">LIGHT</text>
-    </svg>
-    <p class="eyebrow">The curriculum</p>
-    <h2 style="margin-top:18px">Eight modules</h2>
-    <ol>
-      <li class="reveal"><span>01</span><strong>Confidence</strong><p>Asking for the ball, and for help.</p></li>
-      <li class="reveal"><span>02</span><strong>Teamwork</strong><p>Winning as five, losing as five.</p></li>
-      <li class="reveal"><span>03</span><strong>Discipline</strong><p>Showing up when nobody is watching.</p></li>
-      <li class="reveal"><span>04</span><strong>Goal-setting</strong><p>One goal on the court, one in the classroom.</p></li>
-      <li class="reveal"><span>05</span><strong>Resilience</strong><p>A missed shot is information, not a verdict.</p></li>
-      <li class="reveal"><span>06</span><strong>Wellness</strong><p>Food, rest and a healthy body.</p></li>
-      <li class="reveal"><span>07</span><strong>Relationships</strong><p>Friends, family and saying no.</p></li>
-      <li class="reveal"><span>08</span><strong>Leadership</strong><p>Running a drill for the next girl.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="stage" id="stage">
-  <div class="wrap">
-    <p class="eyebrow" style="color:var(--ink)">Where we are</p>
-    <h2 style="margin-top:18px">The road ahead</h2>
-    <p class="lede honest">The curriculum and partnerships are designed, and we are preparing our first camp with one partner school. We are starting small so we can get it right before we grow.</p>
-    <div class="steps">
-      <div class="step reveal"><p class="when">Done</p><h3>Design</h3><p>Eight-module curriculum, camp rotations, safeguarding baseline and partner proposals.</p></div>
-      <div class="step now reveal"><p class="when">Now</p><h3>First camp</h3><p>One partner school, around 25 to 30 girls aged 12 to 18, with a real before-and-after measurement.</p></div>
-      <div class="step reveal"><p class="when">Next</p><h3>Weekly club</h3><p>A weekly programme in Kentinkrono, Kumasi, with older girls trained as junior coaches.</p></div>
-      <div class="step reveal"><p class="when">Two-year goal</p><h3>Twelve schools</h3><p>Partner schools across Kumasi, Accra and Tamale, once the first camps show it works.</p></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap two">
-    <div class="card reveal">
-      <p class="eyebrow">How we measure</p>
-      <h2>Numbers we can stand behind</h2>
-      <ul>
-        <li><b>Attendance log</b> for every session, signed by the lead coach.</li>
-        <li><b>Before and after</b> self-ratings on a 1 to 5 scale for confidence and teamwork.</li>
-        <li><b>Three-month check-in</b> with every girl and her mentor.</li>
-        <li><b>Receipts</b> matched to the budget, shared with every partner.</li>
-      </ul>
-    </div>
-    <div class="card reveal">
-      <p class="eyebrow">Safeguarding</p>
-      <h2>Safe before day one</h2>
-      <ul>
-        <li><b>Two references</b> and a signed code of conduct from every adult volunteer.</li>
-        <li><b>Never one-on-one:</b> no adult is ever alone with a single girl.</li>
-        <li><b>Guardian consent</b> for every girl, with separate consent for photos.</li>
-        <li><b>One named contact</b> for any concern from a girl, parent or volunteer.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="partners" id="partners">
-  <div class="wrap">
-    <p class="eyebrow">Partners &amp; supporters</p>
-    <h2 style="margin-top:18px">Nobody climbs alone</h2>
-    <div class="list">
-      <div class="partner reveal"><strong>YETS Ghana</strong><p>Youth Empowerment Through Sports. Coaching methods through Basketball For Good, and backing for AWAKE.</p></div>
-      <div class="partner reveal"><strong>STEM FOR ALL Ghana</strong><p>Renewable-energy assembly kits that teach real engineering without a computer.</p></div>
-      <div class="partner reveal"><strong>Young Achievers Foundation</strong><p>Support for materials and the girls' camp-day needs.</p></div>
-      <div class="partner reveal"><strong>Melton Foundation</strong><p>AWAKE's founder is a Melton Foundation Fellow, and the project grew out of that global network.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="founder">
-  <div class="wrap grid">
-    <div class="art"><img src="assets/figure.webp" alt="" width="700" height="947" loading="lazy"></div>
-    <div>
-      <p class="eyebrow">From the founder</p>
-      <blockquote style="margin-top:22px">"I kept seeing girls standing at the edge of the court, waiting for someone to pass them the ball. I wanted to be that someone."</blockquote>
-      <p class="who">Josephine Yeboah-Kodie grew up in Kentinkrono-Nsenie, Kumasi. She is a point guard, a youth basketball coach certified through Basketball For Good, and a Computer Engineering student at Ashesi University on a Mastercard Foundation scholarship. <a href="https://kodie003.github.io/ashesi-portfolio/" target="_blank" rel="noreferrer">See her portfolio</a>.</p>
-    </div>
+    <p class="note">Photos from YETS Ghana Basketball For Good camps, where our founder coaches.</p>
+    <div class="more"><a class="btn ghost" href="gallery.html">See all photos</a></div>
   </div>
 </section>
 
@@ -464,73 +104,10 @@
 
 <footer>
   <div class="wrap">
-    <span>AWAKE · Kumasi, Ghana</span>
-    <span>Artwork and words by the AWAKE team · © 2026</span>
+    <span>AWAKE · Kumasi, Ghana · <a href="programme.html">Programme</a> · <a href="about.html">About</a> · <a href="gallery.html">Gallery</a></span>
+    <span>Photos from YETS Ghana Basketball For Good camps · © 2026</span>
   </div>
 </footer>
-
-<script>
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
-  }, { threshold: 0.15 })
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el))
-
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  // court lines draw as the camp section scrolls through the viewport
-  const camp = document.getElementById('camp'), court = camp.querySelector('.court')
-  function drawCourt(){
-    const r = camp.getBoundingClientRect(), vh = innerHeight
-    const t = Math.min(1, Math.max(0, (vh - r.top) / (vh * .9 + r.height * .35)))
-    court.style.setProperty('--draw', (1 - t).toFixed(3))
-  }
-  if (!reduce) { addEventListener('scroll', drawCourt, { passive: true }); drawCourt() }
-
-  // the shot: a JS-driven arc along the dotted path, then through the net
-  const shot = document.getElementById('shot'), ball = document.getElementById('shotball'), net = document.getElementById('net')
-  const arc = shot.querySelector('.arc'), arcLen = arc.getTotalLength()
-  let flying = false
-  function place(x, y, rot){ ball.setAttribute('transform', `translate(${x} ${y}) rotate(${rot})`) }
-  function shoot(){
-    if (reduce || flying) return
-    flying = true
-    const t0 = performance.now(), dur = 1100, drop = 280
-    function frame(now){
-      const t = (now - t0) / dur
-      if (t < 1) {
-        const e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
-        const pt = arc.getPointAtLength(e * arcLen)
-        place(pt.x, pt.y, e * 540)
-        requestAnimationFrame(frame)
-      } else if (t < 1 + drop / dur) {
-        if (!net.classList.contains('swish')) net.classList.add('swish')
-        const d = (t - 1) * dur / drop
-        place(520, 112 + d * 70, 540 + d * 90)
-        requestAnimationFrame(frame)
-      } else {
-        setTimeout(() => { net.classList.remove('swish'); place(60, 230, 0); flying = false }, 700)
-      }
-    }
-    requestAnimationFrame(frame)
-  }
-  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { setTimeout(shoot, 300); o.disconnect() } }, { threshold: .6 }).observe(shot)
-  shot.addEventListener('click', shoot)
-
-  // photo viewer
-  const figs = [...document.querySelectorAll('.masonry figure')], lb = document.getElementById('lb')
-  const lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p')
-  let cur = 0, lastFocus = null
-  function show(i){ cur = (i + figs.length) % figs.length; const f = figs[cur]; lbImg.src = f.dataset.full; lbImg.alt = f.querySelector('img').alt; lbCap.textContent = f.querySelector('figcaption').textContent }
-  function open(i){ lastFocus = document.activeElement; show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.querySelector('.x').focus() }
-  function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; lastFocus && lastFocus.focus() }
-  figs.forEach((f, i) => { f.addEventListener('click', () => open(i)); f.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i) } }) })
-  lb.querySelector('.x').onclick = close
-  lb.querySelector('.prev').onclick = (e) => { e.stopPropagation(); show(cur - 1) }
-  lb.querySelector('.next').onclick = (e) => { e.stopPropagation(); show(cur + 1) }
-  lb.addEventListener('click', (e) => { if (e.target === lb) close() })
-  addEventListener('keydown', (e) => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1) })
-  let tx = 0; lb.addEventListener('touchstart', (e) => { tx = e.touches[0].clientX }, { passive: true })
-  lb.addEventListener('touchend', (e) => { const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) show(cur + (d < 0 ? 1 : -1)) })
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>
