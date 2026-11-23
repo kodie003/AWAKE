@@ -149,6 +149,58 @@
   footer{border-top:1px solid var(--line);padding:30px 0;font-size:13px;color:var(--ink-2)}
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
+
+  /* ---- basketball + STEM touches ---- */
+  .hero .fig{position:relative;max-width:460px;margin-left:auto}
+  .hero .fig img{max-width:none}
+  .dribble{position:absolute;left:59%;top:44%;width:7%;height:41%}
+  .dribble .b{position:absolute;left:0;width:100%;aspect-ratio:1;top:0;transform-origin:50% 100%;animation:dribble 1s infinite}
+  .dribble .b svg{display:block;width:100%;height:100%}
+  .dribble::after{content:"";position:absolute;left:-30%;width:160%;height:10%;bottom:-4%;border-radius:50%;background:rgba(22,21,20,.45);filter:blur(2px);animation:shadow 1s infinite}
+  @keyframes dribble{
+    0%{top:0;transform:translateY(-50%);animation-timing-function:cubic-bezier(.55,0,1,.45)}
+    46%{top:100%;transform:translateY(-100%) scale(1,1)}
+    52%{top:100%;transform:translateY(-100%) scale(1.22,.78);animation-timing-function:cubic-bezier(0,.55,.45,1)}
+    58%{top:96%;transform:translateY(-100%) scale(.95,1.05)}
+    100%{top:0;transform:translateY(-50%)}
+  }
+  @keyframes shadow{0%,100%{transform:scale(.35);opacity:.25}50%{transform:scale(1);opacity:.6}}
+  @media (max-width:860px){.hero .fig{max-width:300px;margin:0 auto}}
+
+  .rotate{position:relative;overflow:hidden}
+  .rotate>.wrap{position:relative;z-index:1}
+  .court{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .court *{fill:none;stroke:rgba(251,250,247,.16);stroke-width:5;stroke-dasharray:1;stroke-dashoffset:var(--draw,1)}
+  .court .hoop{stroke:rgba(224,98,42,.6)}
+
+  .circuit{width:100%;max-width:760px;height:auto;margin:0 0 40px;display:block}
+  .circuit .trace{fill:none;stroke:var(--ink);stroke-width:3;stroke-linejoin:round;opacity:.55}
+  .circuit .pulse{fill:none;stroke:var(--ball);stroke-width:5;stroke-linecap:round;stroke-dasharray:.07 .93;stroke-dashoffset:1;animation:current 2.4s linear infinite}
+  .circuit .pulse.p2{animation-delay:-1.2s}
+  .circuit .node{fill:var(--paper-2);stroke:var(--ink);stroke-width:3}
+  .circuit .panel rect{fill:#2a2f3a;stroke:var(--ink);stroke-width:3}
+  .circuit .panel path{stroke:#8fa3c2;stroke-width:2;opacity:.7}
+  .circuit .led{fill:#9a8a6a;stroke:var(--ink);stroke-width:3;animation:led 2.4s linear infinite}
+  .circuit .glow{fill:#ffd27a;opacity:0;filter:blur(10px);animation:glow 2.4s linear infinite}
+  .circuit text{font:700 12px Inter,sans-serif;letter-spacing:.14em;fill:var(--ink);opacity:.6}
+  @keyframes current{to{stroke-dashoffset:0}}
+  @keyframes led{0%,70%{fill:#9a8a6a}80%,95%{fill:#ffd27a}100%{fill:#9a8a6a}}
+  @keyframes glow{0%,70%{opacity:0}80%,95%{opacity:.9}100%{opacity:0}}
+
+  .shot{width:100%;max-width:560px;height:auto;margin:0 auto 18px;display:block;cursor:pointer}
+  .shot .arc{fill:none;stroke:rgba(22,21,20,.35);stroke-width:3;stroke-dasharray:2 12;stroke-linecap:round}
+  .shot .rim{fill:none;stroke:var(--ball);stroke-width:6}
+  .shot .board{stroke:var(--ink);stroke-width:6}
+  .shot .net{fill:none;stroke:var(--ink);stroke-width:2;opacity:.6;transform-origin:520px 120px;transform-box:view-box}
+  .shot .net.swish{animation:swish .5s ease-out}
+  .shot .hint{font:700 11px Inter,sans-serif;letter-spacing:.16em;fill:var(--ink);opacity:.45}
+  @keyframes swish{30%{transform:scale(.85,1.25)}60%{transform:scale(1.05,.92)}100%{transform:none}}
+
+  @media (prefers-reduced-motion:reduce){
+    .dribble .b,.dribble::after,.circuit .pulse,.circuit .led,.circuit .glow{animation:none}
+    .dribble .b{top:100%;transform:translateY(-100%)}
+    .court *{stroke-dashoffset:0}
+  }
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
@@ -179,12 +231,13 @@
         <a class="btn ghost" href="#camp">How a camp works</a>
       </div>
     </div>
-    <div class="art">
+    <div class="art"><div class="fig">
       <picture>
         <source srcset="assets/cover.webp" type="image/webp">
         <img src="assets/cover.jpg" alt="Pen drawing of a dark figure in a defensive stance, with a white figure stepping out of it" width="579" height="800">
       </picture>
-    </div>
+      <div class="dribble" aria-hidden="true"><div class="b"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#e0622a" stroke="#161514" stroke-width="5"/><path d="M4 50h92M50 4v92M20 15c17 15 17 55 0 70M80 15c-17 15-17 55 0 70" fill="none" stroke="#161514" stroke-width="5"/></svg></div></div>
+    </div></div>
   </div>
 </header>
 
@@ -205,6 +258,21 @@
 </section>
 
 <section class="rotate" id="camp">
+  <svg class="court" viewBox="0 0 2800 1500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect x="20" y="20" width="2760" height="1460" pathLength="1"/>
+    <path d="M1400 20V1480" pathLength="1"/>
+    <circle cx="1400" cy="750" r="180" pathLength="1"/>
+    <rect x="20" y="505" width="580" height="490" pathLength="1"/>
+    <circle cx="600" cy="750" r="180" pathLength="1"/>
+    <path d="M20 110H319A675 675 0 0 1 319 1390H20" pathLength="1"/>
+    <path d="M140 660V840" pathLength="1"/>
+    <circle class="hoop" cx="177" cy="750" r="23" pathLength="1"/>
+    <rect x="2200" y="505" width="580" height="490" pathLength="1"/>
+    <circle cx="2200" cy="750" r="180" pathLength="1"/>
+    <path d="M2780 110H2481A675 675 0 0 0 2481 1390H2780" pathLength="1"/>
+    <path d="M2660 660V840" pathLength="1"/>
+    <circle class="hoop" cx="2623" cy="750" r="23" pathLength="1"/>
+  </svg>
   <div class="wrap">
     <div class="head">
       <div>
@@ -235,6 +303,19 @@
 
 <section class="modules">
   <div class="wrap">
+    <svg class="circuit" viewBox="0 0 760 150" role="img" aria-label="A solar panel wired to an LED, with current flowing along the wires">
+      <g class="panel"><rect x="10" y="30" width="110" height="80" rx="4"/><path d="M47 30v80M83 30v80M10 57h110M10 83h110"/></g>
+      <text x="10" y="138">SUN</text>
+      <path class="trace" d="M120 55H250V25H430V55H560V60H660"/>
+      <path class="trace" d="M120 90H300V125H560V95H660"/>
+      <path class="pulse" pathLength="1" d="M120 55H250V25H430V55H560V60H660"/>
+      <path class="pulse p2" pathLength="1" d="M660 95H560V125H300V90H120"/>
+      <circle class="node" cx="250" cy="55" r="6"/><circle class="node" cx="430" cy="25" r="6"/><circle class="node" cx="300" cy="125" r="6"/><circle class="node" cx="560" cy="125" r="6"/>
+      <circle class="glow" cx="690" cy="77" r="40"/>
+      <path class="led" d="M670 92V70a20 20 0 0 1 40 0v22z"/>
+      <path class="trace" d="M680 92v26M700 92v34"/>
+      <text x="664" y="146">LIGHT</text>
+    </svg>
     <p class="eyebrow">The curriculum</p>
     <h2 style="margin-top:18px">Eight modules</h2>
     <ol>
@@ -315,6 +396,15 @@
 
 <section class="join" id="join">
   <div class="wrap">
+    <svg class="shot" id="shot" viewBox="0 0 600 260" role="img" aria-label="A basketball arcing into a hoop. Tap to shoot again.">
+      <path class="arc" d="M60 230Q300 -40 520 112"/>
+      <line class="board" x1="566" y1="40" x2="566" y2="150"/>
+      <line class="board" x1="566" y1="112" x2="556" y2="112"/>
+      <g class="net" id="net"><path d="M482 120L494 168H546L558 120M494 168L506 120M520 168V120M546 168L534 120M488 144H552"/></g>
+      <ellipse class="rim" cx="520" cy="118" rx="38" ry="7"/>
+      <g id="shotball" transform="translate(60 230)"><g transform="translate(-18 -18) scale(.36)"><circle cx="50" cy="50" r="46" fill="#e0622a" stroke="#161514" stroke-width="5"/><path d="M4 50h92M50 4v92M20 15c17 15 17 55 0 70M80 15c-17 15-17 55 0 70" fill="none" stroke="#161514" stroke-width="5"/></g></g>
+      <text class="hint" x="60" y="256">TAP TO SHOOT</text>
+    </svg>
     <p class="eyebrow">Get involved</p>
     <h2 style="margin-top:18px">Pass her <span>the ball.</span></h2>
     <p>We are looking for coaches, mentors, partner schools and anyone who can help with equipment for our first camp.</p>
@@ -341,6 +431,47 @@
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
   }, { threshold: 0.15 })
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el))
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // court lines draw as the camp section scrolls through the viewport
+  const camp = document.getElementById('camp'), court = camp.querySelector('.court')
+  function drawCourt(){
+    const r = camp.getBoundingClientRect(), vh = innerHeight
+    const t = Math.min(1, Math.max(0, (vh - r.top) / (vh * .9 + r.height * .35)))
+    court.style.setProperty('--draw', (1 - t).toFixed(3))
+  }
+  if (!reduce) { addEventListener('scroll', drawCourt, { passive: true }); drawCourt() }
+
+  // the shot: a JS-driven arc along the dotted path, then through the net
+  const shot = document.getElementById('shot'), ball = document.getElementById('shotball'), net = document.getElementById('net')
+  const arc = shot.querySelector('.arc'), arcLen = arc.getTotalLength()
+  let flying = false
+  function place(x, y, rot){ ball.setAttribute('transform', `translate(${x} ${y}) rotate(${rot})`) }
+  function shoot(){
+    if (reduce || flying) return
+    flying = true
+    const t0 = performance.now(), dur = 1100, drop = 280
+    function frame(now){
+      const t = (now - t0) / dur
+      if (t < 1) {
+        const e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
+        const pt = arc.getPointAtLength(e * arcLen)
+        place(pt.x, pt.y, e * 540)
+        requestAnimationFrame(frame)
+      } else if (t < 1 + drop / dur) {
+        if (!net.classList.contains('swish')) net.classList.add('swish')
+        const d = (t - 1) * dur / drop
+        place(520, 112 + d * 70, 540 + d * 90)
+        requestAnimationFrame(frame)
+      } else {
+        setTimeout(() => { net.classList.remove('swish'); place(60, 230, 0); flying = false }, 700)
+      }
+    }
+    requestAnimationFrame(frame)
+  }
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { setTimeout(shoot, 300); o.disconnect() } }, { threshold: .6 }).observe(shot)
+  shot.addEventListener('click', shoot)
 </script>
 </body>
 </html>
