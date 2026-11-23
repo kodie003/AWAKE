@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWAKE</title>
+<meta name="description" content="AWAKE brings basketball, hands-on STEM and mentorship together for girls aged 12 to 18 in Ghana. Founded by Josephine Yeboah-Kodie.">
+<meta property="og:title" content="AWAKE">
+<meta property="og:description" content="Basketball, hands-on STEM and mentorship for girls in Ghana.">
+<meta property="og:image" content="https://kodie003.github.io/AWAKE/assets/cover.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#98958a;      /* the grey of the drawing paper */
+    --paper-2:#ecebe6;
+    --ink:#161514;
+    --ink-2:#3a3835;
+    --chalk:#fbfaf7;
+    --ball:#e0622a;       /* basketball orange, used sparingly */
+    --line:rgba(22,21,20,.14);
+    --wrap:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{overflow-x:clip;background:var(--paper-2);color:var(--ink);font:400 17px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  .eyebrow{font:700 12px/1 Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ball)}
+  h1,h2,.display{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:.92;text-transform:uppercase}
+  h2{font-size:clamp(40px,6.5vw,84px)}
+  h3{font:600 24px/1.2 Fraunces,Georgia,serif}
+  .lede{font:400 clamp(20px,2.2vw,26px)/1.45 Fraunces,Georgia,serif}
+  section{padding:clamp(72px,10vw,140px) 0}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:20;background:rgba(236,235,230,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 26px/1 Anton,sans-serif;letter-spacing:.04em}
+  .brand img{height:38px;width:auto}
+  .nav ul{display:flex;gap:26px;list-style:none;font:500 14px/1 Inter,sans-serif}
+  .nav ul a{text-decoration:none;opacity:.75}
+  .nav ul a:hover{opacity:1}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--chalk);text-decoration:none;font:700 14px/1 Inter,sans-serif;letter-spacing:.04em;padding:16px 24px;border-radius:999px;transition:transform .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  @media (max-width:760px){.nav ul{display:none}}
+
+  /* hero */
+  .hero{background:var(--paper);padding:0;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:24px;min-height:min(calc(100vh - 64px),860px);padding-top:40px;padding-bottom:40px}
+  .hero .wrap>*,.grid>*,.two>*{min-width:0}
+  .hero h1{font-size:clamp(84px,16vw,220px);color:var(--ink)}
+  .hero h1 span{color:var(--chalk)}
+  .hero .lede{max-width:520px;margin:24px 0 34px;color:var(--ink)}
+  .hero .art img{width:100%;max-width:460px;margin-left:auto;-webkit-mask-image:radial-gradient(ellipse 62% 66% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 62% 66% at 50% 50%,#000 55%,transparent 100%)}
+  .status{display:inline-flex;align-items:center;gap:10px;font:500 13px/1.3 Inter,sans-serif;background:rgba(251,250,247,.55);padding:9px 14px;border-radius:999px;margin-bottom:26px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--ball);box-shadow:0 0 0 4px rgba(224,98,42,.25)}
+  .actions{display:flex;flex-wrap:wrap;gap:12px}
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;min-height:auto;padding-top:48px}
+    .hero .art{order:-1}.hero .art img{max-width:300px;margin:0 auto}
+    .hero .copy{padding-bottom:56px}
+  }
+
+  /* why */
+  .why .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,96px)}
+  .why p+p{margin-top:18px}
+  .why .lede{color:var(--ink)}
+  .why .body{color:var(--ink-2)}
+  @media (max-width:860px){.why .grid{grid-template-columns:1fr}}
+
+  /* rotations */
+  .rotate{background:var(--ink);color:var(--chalk)}
+  .rotate .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+  .rotate .head p{max-width:460px;color:rgba(251,250,247,.72)}
+  .stations{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(251,250,247,.18)}
+  .station{padding:32px 28px 8px 0;border-right:1px solid rgba(251,250,247,.18)}
+  .station+.station{padding-left:28px}
+  .station:last-child{border-right:0}
+  .station .num{font:400 64px/1 Anton,sans-serif;color:var(--ball)}
+  .station h3{margin:14px 0 12px;color:var(--chalk)}
+  .station p{color:rgba(251,250,247,.72);font-size:16px}
+  @media (max-width:860px){.stations{grid-template-columns:1fr}.station,.station+.station{padding:28px 0;border-right:0;border-bottom:1px solid rgba(251,250,247,.18)}}
+
+  /* modules */
+  .modules ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink);margin-top:48px}
+  .modules li{padding:22px 18px 26px 0;border-bottom:1px solid var(--line)}
+  .modules li span{font:400 14px/1 Anton,sans-serif;color:var(--ball);letter-spacing:.06em}
+  .modules li strong{display:block;font:600 21px/1.2 Fraunces,serif;margin:10px 0 6px}
+  .modules li p{font-size:15px;color:var(--ink-2)}
+  @media (max-width:960px){.modules ol{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.modules ol{grid-template-columns:1fr}}
+
+  /* stage */
+  .stage{background:var(--paper)}
+  .stage .honest{max-width:760px;margin:22px 0 56px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .step{background:var(--chalk);border-radius:22px;padding:26px 22px;position:relative}
+  .step.now{background:var(--ink);color:var(--chalk)}
+  .step .when{font:700 11px/1 Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+  .step.now .when{color:var(--ball);opacity:1}
+  .step h3{font-size:21px;margin:14px 0 10px}
+  .step p{font-size:15px;opacity:.8}
+  @media (max-width:960px){.steps{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+  /* measure & safe */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px)}
+  .card h2{font-size:clamp(34px,4.4vw,56px);margin:14px 0 22px}
+  .card ul{list-style:none}
+  .card li{padding:16px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+  .card li b{color:var(--ink)}
+  @media (max-width:860px){.two{grid-template-columns:1fr}}
+
+  /* partners */
+  .partners .list{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+  .partner{border:1.5px solid var(--ink);border-radius:22px;padding:24px 20px}
+  .partner strong{display:block;font:400 26px/1 Anton,sans-serif;text-transform:uppercase;letter-spacing:.02em}
+  .partner p{font-size:15px;color:var(--ink-2);margin-top:12px}
+  @media (max-width:960px){.partners .list{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.partners .list{grid-template-columns:1fr}}
+
+  /* founder */
+  .founder{background:var(--ink);color:var(--chalk)}
+  .founder .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,96px);align-items:center}
+  .founder blockquote{font:400 clamp(26px,3.2vw,40px)/1.25 Fraunces,serif;font-style:italic}
+  .founder .who{margin-top:26px;color:rgba(251,250,247,.72)}
+  .founder .who a{color:var(--chalk)}
+  .founder .art img{max-width:340px;filter:invert(1) brightness(.95);opacity:.92}
+  @media (max-width:860px){.founder .grid{grid-template-columns:1fr}.founder .art img{max-width:220px}}
+
+  /* join */
+  .join{text-align:center}
+  .join h2{font-size:clamp(52px,10vw,150px)}
+  .join h2 span{color:var(--ball)}
+  .join p{max-width:620px;margin:26px auto 34px;color:var(--ink-2)}
+  .join .actions{justify-content:center}
+  .ways{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:64px;text-align:left}
+  .ways div{background:var(--chalk);border-radius:22px;padding:24px}
+  .ways strong{font:600 20px/1.2 Fraunces,serif}
+  .ways p{margin:8px 0 0;font-size:15px}
+  @media (max-width:760px){.ways{grid-template-columns:1fr}}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;font-size:13px;color:var(--ink-2)}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/icon.png" alt="" width="28" height="38">AWAKE</a>
+    <ul>
+      <li><a href="#why">Why</a></li>
+      <li><a href="#camp">The camp</a></li>
+      <li><a href="#stage">Where we are</a></li>
+      <li><a href="#partners">Partners</a></li>
+      <li><a href="#join">Get involved</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="copy">
+      <p class="status"><span class="dot"></span>Pilot stage: first camp in preparation</p>
+      <h1>Awa<span>ke</span></h1>
+      <p class="lede">Basketball, hands-on STEM and mentorship for girls in Ghana. One court, one workbench, one circle of women who have been where they are.</p>
+      <div class="actions">
+        <a class="btn" href="#join">Get involved</a>
+        <a class="btn ghost" href="#camp">How a camp works</a>
+      </div>
+    </div>
+    <div class="art">
+      <picture>
+        <source srcset="assets/cover.webp" type="image/webp">
+        <img src="assets/cover.jpg" alt="Pen drawing of a dark figure in a defensive stance, with a white figure stepping out of it" width="579" height="800">
+      </picture>
+    </div>
+  </div>
+</header>
+
+<section class="why" id="why">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">Why AWAKE</p>
+      <h2 style="margin-top:18px">Girls are welcome to watch.</h2>
+    </div>
+    <div>
+      <p class="lede reveal">In most of the neighbourhoods we work in, the basketball court belongs to the boys. A few girls ask for the ball. Most never do, and after a while nobody expects them to.</p>
+      <div class="body reveal">
+        <p style="margin-top:22px">The same thing happens with science. Many schools teach STEM from the textbook because there is no equipment for anything else, and many homes have no computer or reliable internet. A girl who has never built or broken anything starts far behind, in a world that is being rebuilt by technology.</p>
+        <p>AWAKE puts three things in one place: a court where every girl touches the ball, a workbench where she builds something real with her hands, and mentors who keep checking in after the camp ends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rotate" id="camp">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="eyebrow">How a camp works</p>
+        <h2 style="margin-top:18px">Groups of four.<br>Three stations.</h2>
+      </div>
+      <p>Girls split into small groups and rotate between stations, each led by a different coach or mentor. Nobody sits on the bench.</p>
+    </div>
+    <div class="stations">
+      <div class="station reveal">
+        <div class="num">01</div>
+        <h3>The court</h3>
+        <p>Fundamentals first: BEEF shooting form (Balance, Eyes, Elbow, Follow-through), bounce passes and chest passes. Then small-sided games where every girl must touch the ball before anyone shoots.</p>
+      </div>
+      <div class="station reveal">
+        <div class="num">02</div>
+        <h3>The workbench</h3>
+        <p>Hands-on renewable-energy builds with kits from STEM FOR ALL Ghana: girls assemble solar lanterns and power banks, no computer needed. When something does not light up, they find the fault themselves.</p>
+      </div>
+      <div class="station reveal">
+        <div class="num">03</div>
+        <h3>The circle</h3>
+        <p>Mentorship from female athletes and young professionals, following our eight-module curriculum. Small groups, honest questions, and a follow-up check-in months after camp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="modules">
+  <div class="wrap">
+    <p class="eyebrow">The curriculum</p>
+    <h2 style="margin-top:18px">Eight modules</h2>
+    <ol>
+      <li class="reveal"><span>01</span><strong>Confidence</strong><p>Asking for the ball, and for help.</p></li>
+      <li class="reveal"><span>02</span><strong>Teamwork</strong><p>Winning as five, losing as five.</p></li>
+      <li class="reveal"><span>03</span><strong>Discipline</strong><p>Showing up when nobody is watching.</p></li>
+      <li class="reveal"><span>04</span><strong>Goal-setting</strong><p>One goal on the court, one in the classroom.</p></li>
+      <li class="reveal"><span>05</span><strong>Resilience</strong><p>A missed shot is information, not a verdict.</p></li>
+      <li class="reveal"><span>06</span><strong>Wellness</strong><p>Food, rest and a healthy body.</p></li>
+      <li class="reveal"><span>07</span><strong>Relationships</strong><p>Friends, family and saying no.</p></li>
+      <li class="reveal"><span>08</span><strong>Leadership</strong><p>Running a drill for the next girl.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="stage" id="stage">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--ink)">Where we are</p>
+    <h2 style="margin-top:18px">Honest about the stage</h2>
+    <p class="lede honest">AWAKE is at pilot stage. The curriculum and partnerships are designed, and we are preparing our first camp with one partner school. We want to test the model properly with a small group before we grow it.</p>
+    <div class="steps">
+      <div class="step reveal"><p class="when">Done</p><h3>Design</h3><p>Eight-module curriculum, camp rotations, safeguarding baseline and partner proposals.</p></div>
+      <div class="step now reveal"><p class="when">Now</p><h3>Pilot camp</h3><p>One partner school, around 25 to 30 girls aged 12 to 18, with a real before-and-after measurement.</p></div>
+      <div class="step reveal"><p class="when">Next</p><h3>Weekly club</h3><p>A weekly programme in Kentinkrono, Kumasi, with older girls trained as junior coaches.</p></div>
+      <div class="step reveal"><p class="when">Two-year goal</p><h3>Twelve schools</h3><p>Partner schools across Kumasi, Accra and Tamale, if the pilot shows it works.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap two">
+    <div class="card reveal">
+      <p class="eyebrow">How we measure</p>
+      <h2>Numbers we can stand behind</h2>
+      <ul>
+        <li><b>Attendance log</b> for every session, signed by the lead coach.</li>
+        <li><b>Before and after</b> self-ratings on a 1 to 5 scale for confidence and teamwork.</li>
+        <li><b>Three-month check-in</b> with every girl and her mentor.</li>
+        <li><b>Receipts</b> matched to the budget, shared with every partner.</li>
+      </ul>
+    </div>
+    <div class="card reveal">
+      <p class="eyebrow">Safeguarding</p>
+      <h2>Safe before day one</h2>
+      <ul>
+        <li><b>Two references</b> and a signed code of conduct from every adult volunteer.</li>
+        <li><b>Never one-on-one:</b> no adult is ever alone with a single girl.</li>
+        <li><b>Guardian consent</b> for every girl, with separate consent for photos.</li>
+        <li><b>One named contact</b> for any concern from a girl, parent or volunteer.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="partners" id="partners">
+  <div class="wrap">
+    <p class="eyebrow">Partners &amp; supporters</p>
+    <h2 style="margin-top:18px">Nobody climbs alone</h2>
+    <div class="list">
+      <div class="partner reveal"><strong>YETS Ghana</strong><p>Youth Empowerment Through Sports. Coaching methods through Basketball For Good, and backing for AWAKE.</p></div>
+      <div class="partner reveal"><strong>STEM FOR ALL Ghana</strong><p>Renewable-energy assembly kits that teach real engineering without a computer.</p></div>
+      <div class="partner reveal"><strong>Young Achievers Foundation</strong><p>Support for materials and the girls' camp-day needs.</p></div>
+      <div class="partner reveal"><strong>Melton Foundation</strong><p>AWAKE's founder is a Melton Foundation Fellow, and the project grew out of that global network.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="founder">
+  <div class="wrap grid">
+    <div class="art"><img src="assets/figure.webp" alt="" width="700" height="947" loading="lazy"></div>
+    <div>
+      <p class="eyebrow">From the founder</p>
+      <blockquote style="margin-top:22px">"I kept seeing girls standing at the edge of the court, waiting for someone to pass them the ball. I wanted to be that someone."</blockquote>
+      <p class="who">Josephine Yeboah-Kodie grew up in Kentinkrono-Nsenie, Kumasi. She is a point guard, a youth basketball coach certified through Basketball For Good, and a Computer Engineering student at Ashesi University on a Mastercard Foundation scholarship. <a href="https://kodie003.github.io/ashesi-portfolio/" target="_blank" rel="noreferrer">See her portfolio</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="join">
+  <div class="wrap">
+    <p class="eyebrow">Get involved</p>
+    <h2 style="margin-top:18px">Pass her <span>the ball.</span></h2>
+    <p>We are looking for coaches, mentors, partner schools and anyone who can help with equipment for our pilot camp.</p>
+    <div class="actions">
+      <a class="btn" href="mailto:josephine.kodie@ashesi.edu.gh?subject=AWAKE">Email AWAKE</a>
+    </div>
+    <div class="ways">
+      <div class="reveal"><strong>Coach or mentor</strong><p>Women athletes, engineers and young professionals who can give a few hours to a camp.</p></div>
+      <div class="reveal"><strong>Host a camp</strong><p>Schools and communities with a court and a room we can use for a day.</p></div>
+      <div class="reveal"><strong>Equip the girls</strong><p>Basketballs, STEM kits, snacks and transport fares for girls who would otherwise stay home.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>AWAKE · Kumasi, Ghana</span>
+    <span>Artwork and words by the AWAKE team · © 2026</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } })
+  }, { threshold: 0.15 })
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el))
+</script>
+</body>
+</html>
